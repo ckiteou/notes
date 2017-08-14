@@ -1,22 +1,16 @@
-(function(exports) {
-  function NoteList(note) {
-    this.notes = [];
-  };
-
-  NoteList.prototype.addNote = function (note) {
-    this.notes.push(note);
-  };
-  NoteList.prototype.getNotes = function () {
-    // return this.notes;
-  };
-})(this);
+'use strict';
 
 (function(exports) {
-  function Note(message) {
-    this.text = message;
+  function NoteList() {
+    this._notes = [];
   };
-  Note.prototype.getText = function() {
-    return this.text
+
+  NoteList.prototype.addNote = function(note) {
+    this._notes.push(note);
   };
-  exports.Note = Note;
+
+  NoteList.prototype.getNotes = function() {
+    return this._notes;
+  };
+  exports.NoteList = NoteList;
 })(this);
