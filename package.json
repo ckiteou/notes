@@ -1,0 +1,23 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "\"Notes app which creates notes\"",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckiteou/notes.git"
+  },
+  "author": "\"Costas Kiteou\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckiteou/notes/issues"
+  },
+  "homepage": "https://github.com/ckiteou/notes#readme"
+}
