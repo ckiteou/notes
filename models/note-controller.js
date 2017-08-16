@@ -8,7 +8,8 @@
     // var noteListView = new NoteListView(noteList);
     // var createNote = noteList.createNote("My head hurts and I am very, very tired");
     // var note = noteListView.convertToHTMLView();
-    document.getElementById("app").innerHTML = note;
+    var noteListView = new NoteListView();
+    document.getElementById("app").innerHTML = noteListView.convertToHTMLView();
   };
   exports.NoteController = NoteController;
 })(this);
