@@ -1,6 +1,5 @@
 (function(exports) {
   function NoteListView(noteList) {
-    console.log(noteList);
     this._noteList = noteList;
   };
 

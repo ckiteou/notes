@@ -1,15 +1,12 @@
 (function(exports) {
-  function NoteController() {
-    // this._noteList = view;
+  function NoteController(notelist) {
+    this.notelist = notelist;
+    this.notelist.createNote("Seltzer");
+    this.noteListView = new NoteListView(this.notelist);
   };
 
-  NoteController.prototype.renderNote = function () {
-    // var noteList = new NoteList();
-    // var noteListView = new NoteListView(noteList);
-    // var createNote = noteList.createNote("My head hurts and I am very, very tired");
-    // var note = noteListView.convertToHTMLView();
-    var noteListView = new NoteListView();
-    document.getElementById("app").innerHTML = noteListView.convertToHTMLView();
+  NoteController.prototype.HTML = function () {
+    document.getElementById("app").innerHTML = this.noteListView.convertToHTMLView()
   };
   exports.NoteController = NoteController;
 })(this);

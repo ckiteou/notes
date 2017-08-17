@@ -1,40 +1,47 @@
 (function(exports) {
-  function testNoteControllerCanRenderString() {
-    var noteController = new NoteController();
-    // var list = new NoteListView();
-    // list.convertToHTMLView = function() { return 'Hello' }
-    var list = { convertToHTMLView: function() { return 'Hello' }};
-    var notes = { getNotes: function() { return [] }};
 
-    assert.isTrue(noteController.renderNote() === 'Hello');
+  function testNoteControllerCanTakeAParameter() {
+    var noteListDouble = { createNote: function() {} }
+    var noteController = new NoteController(noteListDouble);
+    assert.isTrue(noteController.notelist);
+  }
+
+  function testNoteControllerPassesCreateNoteToNoteList() {
+    function NoteListDouble() {
+      this.count = 0;
+    };
+
+    NoteListDouble.prototype.createNote = function () {
+      this.count++;
+    };
+    var noteListDouble = new NoteListDouble();
+    var noteController = new NoteController(noteListDouble);
+    assert.isTrue(noteListDouble.count === 1)
+  }
+
+  function testNoteControllerCanAddNoteWithText() {
+    var noteListDouble = { createNote: function() {} };
+    var noteController = new NoteController(noteListDouble);
+    assert.isTrue(noteController.noteListView._noteList === noteListDouble)
+  }
+
+  function testNoteControllerInnerHTMLExists() {
+    var noteListDouble = { createNote: function() {} };
+    var noteController = new NoteController(noteListDouble);
+    assert.isTrue(noteController.HTML);
+  }
+
+  function testNoteControllerElementAppContainsCorrectHTML() {
+    var noteDouble = { getText: function() {return "Test Text"} }
+    var noteListDouble = { createNote: function() {}, getNotes: function() { return [noteDouble] } };
+    var noteController = new NoteController(noteListDouble);
+    noteController.HTML();
+    assert.isTrue(document.getElementById("app").innerHTML === "<ul><li><div>Test Text</div></li></ul>")
   };
-  exports.testNoteControllerCanRenderString = testNoteControllerCanRenderString();
+
+  testNoteControllerCanTakeAParameter();
+  testNoteControllerPassesCreateNoteToNoteList();
+  testNoteControllerCanAddNoteWithText();
+  testNoteControllerInnerHTMLExists();
+  testNoteControllerElementAppContainsCorrectHTML();
 })(this);
-
-
-
-// (function(exports) {
-//   function testNoteController() {
-//
-//     var noteController = new NoteController();
-//     var string = "Hello"
-//     noteController.renderNote = function() { return "Hello" }
-//
-//     assert.isTrue(noteController === string);
-//   }
-//   exports.testNoteController = testNoteController();
-// })(this);
-
-// (function(exports) {
-//   function testNoteControllerCanRenderString() {
-//     var newNoteController = new NoteController();
-//     var noteListView = new NoteListView();
-//
-//    NoteListView.prototype.convertToHTMLView = function () {
-//       return 'blah';
-//     };
-//
-//    assert.isTrue(newNoteController.renderNote() === 'blah');
-//   };
-//   exports.testNoteControllerCanRenderString = testNoteControllerCanRenderString();
-// })(this);
